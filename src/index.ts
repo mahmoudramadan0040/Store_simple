@@ -1,5 +1,5 @@
 import express from 'express';
-
+import routes from './routes';
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
 import helmet from 'helmet';
@@ -22,18 +22,11 @@ app.use(limiter);
 app.use(express.json());
 app.use(morgan('common'));
 app.use(helmet());
+
+app.use('/api',routes);
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('hello world');
 });
-app.get('/error', (req: express.Request, res: express.Response) => {
-  
-  res.json({
-    message: 'hellow world',
-  });
-  res.send('hello world');
-});
-// test db 
-console.log(configration);
 
 
 
