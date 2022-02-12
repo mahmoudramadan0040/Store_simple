@@ -1,0 +1,19 @@
+import { Pool } from "pg";
+
+import config from "../config/config";
+
+console.log(config.password)
+const pool = new Pool({
+  host: config.host,
+  database: config.database,
+  user:config.user,
+  password: config.password ,
+  port: parseInt(config.dbPort as string),
+  max:4
+});
+
+pool.on('error',(error:Error)=>{
+  console.log(error.message);
+  
+})
+export default pool;
